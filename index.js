@@ -2,7 +2,6 @@ var express = require('express');
 var cors = require('cors');
 require('dotenv').config()
 const multer = require('multer');
-const bodyParser = require('body-parser')
 
 // Configure Multer for file uploads
 const storage = multer.diskStorage({
@@ -22,7 +21,6 @@ var app = express();
 
 app.use(cors());
 
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/public', express.static(__dirname +`/public`));
 
