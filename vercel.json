@@ -19,7 +19,7 @@
       "dest": "index.js"
     },
     {
-      "src": "/api/fileanalyse/(.*)",
+      "src": "/api/(.*)",
       "dest": "/uploads/$1"
     }
   ]
