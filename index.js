@@ -21,9 +21,12 @@ const upload = multer({ storage });
 var app = express();
 
 app.use(cors());
-app.use('/public', express.static(process.cwd() + '/public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function (req, res) {
+app.use('/public', express.static(__dirname +`/public`));
+
+app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
