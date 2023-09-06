@@ -2,18 +2,27 @@ var express = require('express');
 var cors = require('cors');
 require('dotenv').config()
 const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+
+const uploadDirectory = 'uploads/';
+
+// Check if the 'uploads' directory exists; if not, create it.
+if (!fs.existsSync(uploadDirectory)) {
+  fs.mkdirSync(uploadDirectory);
+}
+
 
 // Configure Multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Set the destination folder where uploaded files will be stored
-    cb(null, 'uploads/');
+    cb(null, uploadDirectory);
   },
   filename: (req, file, cb) => {
-    // Define the filename for the uploaded file
     cb(null, Date.now() + '-' + file.originalname);
   },
 });
+
 
 const upload = multer({ storage });
 
